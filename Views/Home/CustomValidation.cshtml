@@ -1,0 +1,27 @@
+﻿@model MyViewModel
+@{
+    ViewData["Title"] = "String concatenation";
+}
+@using (Html.BeginForm("CustomValidation", "Home", FormMethod.Post))
+{
+    <div class="text-center">
+        @foreach (var item in ViewContext.ViewData.ModelState)
+        {
+            if (item.Value.Errors.Any())
+            {
+                @:The following errors have occurred:
+
+                foreach (var error in item.Value.Errors)
+                {
+                    @Html.Raw("<br/>" + error.ErrorMessage)
+                }
+            }
+        }
+    </div>
+    <div class="text-center">
+        <input asp-for="Priority" type="number" />
+        <input asp-for="DateStart" type="date" />
+        <input asp-for="DateEnd" type="date" />
+        <input type="submit" value="Save" class="btn btn-info pull-right" />
+    </div>
+}
