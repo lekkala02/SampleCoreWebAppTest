@@ -62,6 +62,32 @@ namespace SampleCoreWebApp.Controllers
             return View(model);
         }
 
+        public IActionResult Filing(string filingCode)
+        {
+            IFiling filing;
+
+            //Switch/If else
+
+            filing = new DomesticFiling();
+            filing.GetFilingTypeFee();
+            filing.GetFilingTypeCode();
+
+            filing = new ForiegnFiling();
+            filing.GetFilingTypeFee();
+            filing.GetFilingTypeCode();
+
+            filing = new PartnerShipFiling();
+            filing.GetFilingTypeFee();
+            filing.GetFilingTypeCode();
+
+            return View();
+        }
+
+        private object GetFilingDetails(IFiling filing)
+        {
+            throw new System.NotImplementedException();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
